@@ -83,7 +83,8 @@ module tb2;
 
 endmodule
 
-<img width="940" height="318" alt="image" src="https://github.com/user-attachments/assets/8a343bdb-ffb4-4aac-8b88-cf59eca374a8" />
+<img width="513" height="187" alt="image" src="https://github.com/user-attachments/assets/9baedc2b-d610-43f6-9afc-36facc9abc7e" />
+
 
 # Simulation Procedure
 STEP 1 – Open Terminal
