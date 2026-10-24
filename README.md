@@ -1,7 +1,7 @@
 # EXPT 2 - Verification of Logic Gates
-### SIMULATION AND VERIFICATION OF AND, OR, AND NOT GATES
+### SIMULATION AND VERIFICATION OF AND, NAND, OR, NOR, XOR, AND NOT GATES
 ## Aim
-To design, implement, and verify the functionality of basic AND, OR, and NOT logic gates using Verilog HDL, and verify the functionality using Synopsys VCS and DVE.
+To design, implement, and verify the functionality of basic AND, NAND, OR, NOR, XOR and NOT logic gates using Verilog HDL, and verify the functionality using Synopsys VCS and DVE.
 # Software Required
 •	Synopsys VCS
 •	Synopsys DVE
@@ -11,7 +11,10 @@ To design, implement, and verify the functionality of basic AND, OR, and NOT log
 The basic logic gates realize the following Boolean functions:
 
 •	AND: Y_AND = A . B
+. NAND: Y_NAND = ~(A . B)
 •	OR: Y_OR = A + B
+. NOR: Y_NOR = ~(A + B)
+. XOR: Y_XOR = A ^ B
 •	NOT: Y_NOT = A'
 
 # Theory / Synopsis
@@ -22,32 +25,42 @@ logic_gates.v	Logic-gate RTL
 logic_gates_tb.v	All input combinations and VCD generation
 
  # Verilog  Program
- module basic_gates (
+module basic_gates (
     input  wire a,
     input  wire b,
     output wire y_and,
+    output wire y_nand,
     output wire y_or,
+    output wire y_nor,
+    output wire y_xor,
     output wire y_not
-    );
+);
 
     assign y_and = a & b;   // AND gate
+    assign y_nand = ~(a & b);
     assign y_or  = a | b;   // OR gate
+    assign y_nor = ~(a |b);
+    assign y_xor = a ^ b;
     assign y_not = ~a;      // NOT gate (inverter)
-
+    
+    
 endmodule
 
 # **Test Bench Program**
 module tb2;
 
     reg a, b;
-    wire y_and, y_or, y_not;
+    wire y_and, y_nand, y_or, y_nor, y_xor, y_not;
 
     // Instantiate the design under test (DUT)
     basic_gates uut (
         .a(a),
         .b(b),
         .y_and(y_and),
+        .y_nand(y_nand),
         .y_or(y_or),
+        .y_nor(y_nor),
+        .y_xor(y_xor),
         .y_not(y_not)
     );
 
@@ -57,7 +70,7 @@ module tb2;
         $dumpvars(0, tb2);               // dump all signals in this testbench hierarchy
 
         // ---- Apply all 4 input combinations ----
-        $monitor("Time=%0t a=%b b=%b | AND=%b OR=%b NOT(a)=%b", $time, a, b, y_and, y_or, y_not);
+        $monitor("Time=%0t a=%b b=%b | AND=%b NAND=%b OR=%b NOR=%b XNOR=%b NOT(a)=%b", $time, a, b, y_and, y_nand, y_or, y_nor, y_xor, y_not);
 
         a = 0; b = 0; #10;
         a = 0; b = 1; #10;
@@ -104,7 +117,10 @@ Locate the signals:
 a
 b
 y_and
+y_nand
 y_or
+y_nor
+y_xor
 y_not
 Add the signals to the waveform window.
 Run/inspect the waveform.
@@ -113,14 +129,20 @@ Verify that y_or = 1 whenever a=1 OR b=1 (any input high forces the output high)
 Verify that y_not is always the exact complement of a, regardless of b.
 The waveform should agree with the truth table.
 # Expected Result
-The basic logic gates — AND, OR, and NOT — were realized using Verilog HDL:
+The basic logic gates — AND, NAND, OR, NOR, XOR and NOT — were realized using Verilog HDL:
 Y_AND = A.B
+Y_NAND = ~(A.B)
 Y_OR = A+B
+Y_NOR = ~(A+B)
+Y_XOR = A^B
 Y_NOT = A'
+<img width="670" height="177" alt="image" src="https://github.com/user-attachments/assets/dd0c293f-fb04-4b46-ad2e-45ecdbf888a9" />
+
 The design was compiled and simulated using Synopsys VCS, and the functionality was verified using DVE waveform analysis, matching the expected truth table.
 Output
 # OUTPUT
-<img width="1847" height="1007" alt="image" src="https://github.com/user-attachments/assets/1eb344e0-5925-4d5f-b1c7-9fe61f393f53" />
+<img width="1840" height="936" alt="image" src="https://github.com/user-attachments/assets/688f5179-a328-4848-9728-11c0503fc4aa" />
+
 
 
  
