@@ -137,6 +137,7 @@ Y_OR = A+B
 Y_NOR = ~(A+B)
 Y_XOR = A^B
 Y_NOT = A'
+
 <img width="670" height="177" alt="image" src="https://github.com/user-attachments/assets/dd0c293f-fb04-4b46-ad2e-45ecdbf888a9" />
 
 The design was compiled and simulated using Synopsys VCS, and the functionality was verified using DVE waveform analysis, matching the expected truth table.
